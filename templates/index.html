@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Phishing URL Detector</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Segoe UI', sans-serif;
+}
+
+body{
+    background:#f4f7fc;
+    color:#333;
+}
+
+/* Navbar */
+header{
+    background:#0f172a;
+    padding:15px 50px;
+}
+
+nav{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+.logo{
+    color:white;
+    font-size:24px;
+    font-weight:bold;
+}
+
+nav ul{
+    display:flex;
+    list-style:none;
+}
+
+nav ul li{
+    margin-left:25px;
+}
+
+nav ul li a{
+    color:white;
+    text-decoration:none;
+    transition:0.3s;
+}
+
+nav ul li a:hover{
+    color:#38bdf8;
+}
+
+/* Hero Section */
+.hero{
+    min-height:90vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+    background:linear-gradient(
+        rgba(15,23,42,0.92),
+        rgba(15,23,42,0.92)
+    );
+}
+
+.hero-content{
+    color:white;
+    width:80%;
+    max-width:850px;
+}
+
+.hero-content h1{
+    font-size:3rem;
+    margin-bottom:20px;
+}
+
+.hero-content p{
+    font-size:1.1rem;
+    margin-bottom:30px;
+    line-height:1.7;
+}
+
+.detector-box{
+    display:flex;
+    justify-content:center;
+    flex-wrap:wrap;
+    gap:10px;
+}
+
+.detector-box input{
+    width:70%;
+    max-width:550px;
+    padding:15px;
+    border:none;
+    border-radius:8px;
+    font-size:16px;
+    outline:none;
+}
+
+.detector-box button{
+    padding:15px 25px;
+    background:#38bdf8;
+    color:white;
+    border:none;
+    border-radius:8px;
+    cursor:pointer;
+    font-size:16px;
+    transition:0.3s;
+}
+
+.detector-box button:hover{
+    background:#0284c7;
+}
+
+.result-box{
+    margin-top:20px;
+    font-size:18px;
+    font-weight:bold;
+}
+
+/* Features */
+.features{
+    padding:80px 10%;
+    text-align:center;
+}
+
+.features h2{
+    margin-bottom:40px;
+    font-size:2.2rem;
+    color:#0f172a;
+}
+
+.feature-container{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+    gap:25px;
+}
+
+.feature-card{
+    background:white;
+    padding:30px;
+    border-radius:15px;
+    box-shadow:0 5px 15px rgba(0,0,0,0.1);
+    transition:0.3s;
+}
+
+.feature-card:hover{
+    transform:translateY(-10px);
+}
+
+.feature-card h3{
+    margin-bottom:15px;
+    color:#0f172a;
+}
+
+/* About */
+.about{
+    background:white;
+    padding:80px 10%;
+    text-align:center;
+}
+
+.about h2{
+    margin-bottom:20px;
+    color:#0f172a;
+}
+
+.about p{
+    max-width:900px;
+    margin:auto;
+    line-height:1.8;
+    font-size:1.05rem;
+}
+
+/* Footer */
+footer{
+    background:#0f172a;
+    color:white;
+    text-align:center;
+    padding:20px;
+}
+
+/* Responsive */
+@media(max-width:768px){
+
+    .hero-content h1{
+        font-size:2.2rem;
+    }
+
+    .detector-box input{
+        width:100%;
+    }
+
+    nav{
+        flex-direction:column;
+        gap:15px;
+    }
+
+    nav ul{
+        flex-wrap:wrap;
+        justify-content:center;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <nav>
+        <div class="logo">🛡️ PhishGuard</div>
+
+        <ul>
+            <li><a href="#">Home</a></li>
+            <li><a href="#features">Features</a></li>
+            <li><a href="#about">About</a></li>
+        </ul>
+    </nav>
+</header>
+
+<section class="hero">
+    <div class="hero-content">
+        <h1>Phishing Website Detector</h1>
+
+        <p>
+            Protect yourself from phishing attacks by analyzing suspicious URLs
+            using advanced machine learning techniques and real-time threat detection.
+        </p>
+
+       <form method="POST">
+    <div class="detector-box">
+        <input
+            type="text"
+            name="url"
+            placeholder="Enter URL to analyze..."
+            required
+        >
+        <button type="submit">Check URL</button>
+    </div>
+</form>
+
+{% if predict %}
+<div class="result-box">
+    {{ predict }}
+</div>
+{% endif %}
+    </div>
+</section>
+
+<section class="features" id="features">
+    <h2>Key Features</h2>
+
+    <div class="feature-container">
+
+        <div class="feature-card">
+            <h3>🔍 URL Analysis</h3>
+            <p>Detect suspicious patterns and malicious links instantly.</p>
+        </div>
+
+        <div class="feature-card">
+            <h3>⚡ Real-Time Detection</h3>
+            <p>Get immediate analysis results for submitted URLs.</p>
+        </div>
+
+        <div class="feature-card">
+            <h3>🔒 Secure Browsing</h3>
+            <p>Stay protected from phishing and fraudulent websites.</p>
+        </div>
+
+    </div>
+</section>
+
+<section class="about" id="about">
+    <h2>About the System</h2>
+
+    <p>
+        The Phishing URL Detector System helps users identify potentially
+        dangerous websites before visiting them. By examining URL structure,
+        domain characteristics, and security indicators, the system predicts
+        whether a URL is legitimate or phishing.
+    </p>
+</section>
+
+<footer>
+    <p>© 2026 PhishGuard | Cyber Security Project</p>
+</footer>
+
+
+</body>
+</html>
